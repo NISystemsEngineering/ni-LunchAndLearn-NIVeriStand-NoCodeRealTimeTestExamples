@@ -1,5 +1,0 @@
-[My Computer]
-My Computer="localhost"
-
-[RT PXI Target]
-RT PXI Target="0.0.0.0"
