@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SourceFile Checksum="FF46DDABC88B7BD9D115FA1CA515A71FC8A136B6206478911FE6996E2D7E4181D7F4310DE83F34FB8B4AD8D85B4F7F76921F740F5245F9AB1D120248978B4D2C" Timestamp="1DD67D805CFF97E" xmlns="http://www.ni.com/PlatformFramework">
+<SourceFile Checksum="62FE6CE70F9F316D9CF4BF73DCFDA14C8BD34AE629A35508D1E368312E99BAA93FB92C635459960B4CAE79CDABA04D2413CA08C251C1492D61E96F1014FD1353" Timestamp="1DD68968710CC2B" xmlns="http://www.ni.com/PlatformFramework">
 	<SourceModelFeatureSet>
 		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Configuration Based Software Core" Name="http://www.ni.com/ConfigurationBasedSoftware.Core" OldestCompatibleVersion="6.3.0.49152" Version="9.15.0.49152" />
 		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="LabVIEW Controls" Name="http://www.ni.com/Controls.LabVIEW.Design" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
@@ -10,7 +10,7 @@
 	</SourceModelFeatureSet>
 	<Screen Id="4d4f953eabe24172a9df9f4ea4d7c332" xmlns="http://www.ni.com/VeriStand">
 		<ScreenSurface Height="[float]1600" Id="e1f403158fe74158b559fa5af5d8f5a6" Left="[float]0" PanelSizeMode="Fixed" Top="[float]0" Width="[float]2000" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core">
-			<VeriStandChart BaseName="[string]Chart" Height="[float]579" Id="8b100fb72b3a4988a85cff1309fa52d8" Label="[UIModel]fa230363e18c45b08b7991346e952a5c" Left="[float]289" PlotAreaMargin="[SMThickness]66,24,28,43" PreferIndexData="[bool]False" RecordTime="[uint]10" RenderMode="[RenderMode]Hardware" SuppressScaleLayout="[bool]False" Top="[float]98" Width="[float]681" xmlns="http://www.ni.com/VeriStand">
+			<VeriStandChart BaseName="[string]Chart" Height="[float]579" HistoryLength="[uint]100" Id="8b100fb72b3a4988a85cff1309fa52d8" Label="[UIModel]fa230363e18c45b08b7991346e952a5c" Left="[float]289" PlotAreaMargin="[SMThickness]66,24,28,43" PreferIndexData="[bool]False" RecordTime="[uint]10" RenderMode="[RenderMode]Hardware" StreamingRate="[double]10" SuppressScaleLayout="[bool]False" Top="[float]98" Width="[float]681" xmlns="http://www.ni.com/VeriStand">
 				<VeriStandChartAxis Adjuster="[RangeAdjuster]ContinuousChart" Id="7358eeb687054571b70eb955f1d4298a" Label="[string]System Time" MajorDivisions="[UIModel]cc8df06e6c034fe7b3a743946628f61d" Orientation="[SMOrientation]Horizontal" Range="[IRange]0, 10, System.Double" ValueType="[Type]Double">
 					<RangeLabeledDivisions Id="cc8df06e6c034fe7b3a743946628f61d" xmlns="http://www.ni.com/Controls.LabVIEW.Design">
 						<p.LabelPresenter Kind="LVRelativeSeconds" Format="G6" />
@@ -78,7 +78,7 @@
 			<Label Height="[float]16" Id="c54ece6382c441859f5f110533ef85ce" LabelOwner="[UIModel]3bc88e6bfd864507ab7d35c242be6d33" Left="[float]59" Text="[string]Chamber.Temperature" Top="[float]78" Width="[float]118" xmlns="http://www.ni.com/PanelCommon" />
 			<ChannelMeter BaseName="[string]Meter" Channel="[string]Aliases/Chamber/Chamber.Shock" Height="[float]130" Id="5500eb91288f4fdb9c9cb906397b11b4" InteractionMode="[NumericPointerInteractionModes]EditRange" Label="[UIModel]b736a76147ce4e6f8de28833b47e6224" Left="[float]59" Maximum="[double]50" MinHeight="[float]65" MinWidth="[float]110" Minimum="[double]0" Top="[float]275" ValueType="[Type]Double" Width="[float]200" />
 			<Label Height="[float]16" Id="b736a76147ce4e6f8de28833b47e6224" LabelOwner="[UIModel]5500eb91288f4fdb9c9cb906397b11b4" Left="[float]59" Text="[string]Chamber.Shock" Top="[float]255" Width="[float]83" xmlns="http://www.ni.com/PanelCommon" />
-			<VeriStandChart BaseName="[string]Chart" Height="[float]579" Id="60e64f108cba4cc8be3de487bd2c012f" Label="[UIModel]e61d3c7b520b4b2c88c6dce975a850e9" Left="[float]1114" PlotAreaMargin="[SMThickness]77,24,41,43" PreferIndexData="[bool]False" RecordTime="[uint]10" RenderMode="[RenderMode]Hardware" SuppressScaleLayout="[bool]False" Top="[float]98" UseAbsoluteTime="[bool]True" Width="[float]709" xmlns="http://www.ni.com/VeriStand">
+			<VeriStandChart BaseName="[string]Chart" Height="[float]579" Id="60e64f108cba4cc8be3de487bd2c012f" Label="[UIModel]e61d3c7b520b4b2c88c6dce975a850e9" Left="[float]1117" PlotAreaMargin="[SMThickness]77,24,44,43" PreferIndexData="[bool]False" RecordTime="[uint]10" RenderMode="[RenderMode]Hardware" SuppressScaleLayout="[bool]False" Top="[float]98" UseAbsoluteTime="[bool]True" Width="[float]709" xmlns="http://www.ni.com/VeriStand">
 				<VeriStandChartAxis Adjuster="[RangeAdjuster]ContinuousChart" Id="f06f4a7ea034184928a1efd827a8e56" Label="[string]Absolute Time" MajorDivisions="[UIModel]1bd9b6fbbf604a15a5655c909c82f84f" Orientation="[SMOrientation]Horizontal" Range="[IRange]0, 10, System.Double" ValueType="[Type]Double">
 					<RangeLabeledDivisions Id="1bd9b6fbbf604a15a5655c909c82f84f" xmlns="http://www.ni.com/Controls.LabVIEW.Design">
 						<p.LabelPresenter Kind="LVTime" Format="#T" />
@@ -102,10 +102,10 @@
 					<PlotRenderer Id="852140d7bff4a0d99ce52b9c41d44c8" LineStroke="[SMSolidColorBrush]#ff1f3145" LineThickness="[double]1" xmlns="http://www.ni.com/Controls.LabVIEW.Design" />
 				</VeriStandChartPlot>
 			</VeriStandChart>
-			<HmiChartPlotLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]106" Id="764868f75b2a443c87148840958a5bb7" Left="[float]1830" Top="[float]98" />
-			<HmiChartCursorLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]80" Id="4305c76f9dfe4910abc8e2bf2b0290b6" Left="[float]1119" MinHeight="[float]80" Top="[float]706" Visible="[bool]False" Width="[float]316" />
-			<HmiChartScaleLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]52" Id="44b11ac82540a2b6b29dac772cb2cb" Left="[float]1748" Top="[float]684" Visible="[bool]False" />
-			<CompositeGraphTools BackgroundColor="[SMSolidColorBrush]#fff7f7f7" Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]26" Id="aa557b4525e34043bde304528f9e815a" Left="[float]1637" OffsetX="[float]523" OffsetY="[float]0" Top="[float]98" Width="[float]152">
+			<HmiChartPlotLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]106" Id="764868f75b2a443c87148840958a5bb7" Left="[float]1833" Top="[float]98" />
+			<HmiChartCursorLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]80" Id="4305c76f9dfe4910abc8e2bf2b0290b6" Left="[float]1122" MinHeight="[float]80" Top="[float]706" Visible="[bool]False" Width="[float]316" />
+			<HmiChartScaleLegend Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]52" Id="44b11ac82540a2b6b29dac772cb2cb" Left="[float]1751" Top="[float]684" Visible="[bool]False" />
+			<CompositeGraphTools BackgroundColor="[SMSolidColorBrush]#fff7f7f7" Graph="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Height="[float]26" Id="aa557b4525e34043bde304528f9e815a" Left="[float]1640" OffsetX="[float]523" OffsetY="[float]0" Top="[float]98" Width="[float]152">
 				<ComposableButton BackingCanDelete="[bool]False" BaseName="[string]Hold" BorderBrush="[SMSolidColorBrush]#00ffffff" Content="[UIModel]518a16940f0c4d3cae75a94f8c819dcd" Enabled="[bool]False" FalseBackground="[SMSolidColorBrush]#00ffffff" Height="[float]22" Id="52d5278a4a2d4a0cb587333b7c3caf1a" IsMomentary="[bool]False" Label="[UIModel]acff59b54199440595014480fb0ddd67" Left="[float]2" PartName="[string]PART_HoldButton" Top="[float]2" Value="[bool]False" Width="[float]28">
 					<Image BaseName="[string]Image" Id="518a16940f0c4d3cae75a94f8c819dcd" Left="[float]0" Source="[string]pack://application:,,,/NationalInstruments.Hmi.Core;component/Resources/GraphTools_Pause.png" Stretch="[SMStretch]None" Top="[float]0" xmlns="http://www.ni.com/PlatformFramework" />
 				</ComposableButton>
@@ -127,7 +127,7 @@
 				<Label Id="5a9549fc2ef64c8db6f1c12f73608305" LabelOwner="[UIModel]f5c55e840e3f40ca99f5244d97b86255" Left="[float]93" Text="[string]Pan" Top="[float]-18" Visible="[bool]False" xmlns="http://www.ni.com/PanelCommon" />
 				<Label Id="e12907b1be2046fea6e13823c1779cd5" LabelOwner="[UIModel]9cd6e97d0864d6097e636ab6c586a96" Left="[float]123" Text="[string]Reset" Top="[float]-18" Visible="[bool]False" xmlns="http://www.ni.com/PanelCommon" />
 			</CompositeGraphTools>
-			<Label Height="[float]16" Id="e61d3c7b520b4b2c88c6dce975a850e9" LabelOwner="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Left="[float]1114" Text="[string]Chart" Top="[float]78" Width="[float]30" xmlns="http://www.ni.com/PanelCommon" />
+			<Label Height="[float]16" Id="e61d3c7b520b4b2c88c6dce975a850e9" LabelOwner="[UIModel]60e64f108cba4cc8be3de487bd2c012f" Left="[float]1117" Text="[string]Accels" Top="[float]78" Width="[float]34" xmlns="http://www.ni.com/PanelCommon" />
 			<ChannelLED BaseName="[string]Square LED" Channel="[string]Aliases/DUT/Outputs/DUT.DigitalOutput" ContentVisibility="[Visibility]Collapsed" FalseContent="[string]Off" Height="[float]53" Id="c503172db7994e4c920c33466c418959" IsReadOnly="[bool]True" Label="[UIModel]3a9ca82d64244762b55376b842945403" Left="[float]59" MinHeight="[float]20" MinWidth="[float]20" Shape="[LEDShape]Square" Top="[float]624" TrueContent="[string]On" Width="[float]52" />
 			<Label Height="[float]16" Id="3a9ca82d64244762b55376b842945403" LabelOwner="[UIModel]c503172db7994e4c920c33466c418959" Left="[float]59" Text="[string]DUT.DigitalOutput" Top="[float]604" Width="[float]98" xmlns="http://www.ni.com/PanelCommon" />
 		</ScreenSurface>
