@@ -10,7 +10,7 @@
 				<String>Integrated Test System</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.213</String>
+				<String>1.0.0.216</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -61,7 +61,7 @@
 						<Double>100</Double>
 					</Property>
 					<Property Name="TL timeout">
-						<Double>120</Double>
+						<Double>240</Double>
 					</Property>
 					<Property Name="daq timeout">
 						<U32>1000</U32>
@@ -91,7 +91,7 @@
 						<U32>0</U32>
 					</Property>
 					<Property Name="ts">
-						<U32>0</U32>
+						<U32>2</U32>
 					</Property>
 					<Property Name="Warmup Time [ms]">
 						<U32>2000</U32>
@@ -104,6 +104,9 @@
 					</Property>
 					<Property Name="Timing Source Settings">
 						<U16>1</U16>
+					</Property>
+					<Property Name="TS_Custom_Dev_Resolved">
+						<DependentNode Path="Targets/Controller/Custom Devices/Scan Engine and EtherCAT" />
 					</Property>
 				</Properties>
 				<Errors />
