@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>NI VeriStand Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@300;500;700&display=swap');
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --bg:         #0c0e12;
+    --surface:    #13161c;
+    --border:     #1e2330;
+    --border-hi:  #2a3040;
+    --text:       #c8cdd8;
+    --text-dim:   #5c6378;
+    --accent:     #3b82f6;
+    --accent-dim: rgba(59, 130, 246, 0.12);
+    --green:      #22c55e;
+    --green-dim:  rgba(34, 197, 94, 0.10);
+    --amber:      #f59e0b;
+    --red:        #ef4444;
+    --mono:       'IBM Plex Mono', 'Courier New', monospace;
+    --sans:       'IBM Plex Sans', system-ui, sans-serif;
+  }
+
+  html { scroll-padding-top: env(safe-area-inset-top, 0px); }
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.5;
+    padding-bottom: 56px;
+  }
+
+  /* ── Header ───────────────────────────────────────── */
+  header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .header-left { display: flex; align-items: center; gap: 14px; }
+  .logo {
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--green);
+    box-shadow: 0 0 8px var(--green), 0 0 20px rgba(34,197,94,0.25);
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+  .logo.disconnected { background: var(--red); box-shadow: 0 0 8px var(--red); animation: none; }
+  @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+  h1 {
+    font-family: var(--mono); font-size: 15px; font-weight: 600;
+    letter-spacing: 0.05em; text-transform: uppercase; color: var(--text);
+  }
+  .meta {
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    display: flex; gap: 24px; flex-wrap: wrap;
+  }
+  .meta span::before {
+    content: ''; display: inline-block; width: 6px; height: 6px;
+    border-radius: 50%; margin-right: 6px; vertical-align: middle;
+  }
+  .meta .ts::before  { background: var(--accent); }
+  .meta .rate::before { background: var(--green); }
+
+  /* ── Status Banner ────────────────────────────────── */
+  #status-banner {
+    display: none; padding: 10px 32px;
+    font-family: var(--mono); font-size: 13px;
+    background: rgba(239,68,68,0.08); border-bottom: 1px solid rgba(239,68,68,0.2); color: var(--red);
+  }
+
+  /* ── Section titles ───────────────────────────────── */
+  .section-bar {
+    padding: 20px 32px 8px;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+  }
+  .section-title {
+    font-family: var(--mono); font-size: 12px; font-weight: 500;
+    color: var(--text-dim); letter-spacing: 0.06em;
+  }
+
+  /* ── Variable Grid ────────────────────────────────── */
+  main { padding: 0 32px 28px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 16px 18px; transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .card:hover { border-color: var(--border-hi); box-shadow: 0 2px 20px rgba(0,0,0,0.3); }
+  .card.flash::after {
+    content: ''; position: absolute; inset: 0;
+    background: var(--accent-dim); animation: flash-fade 0.6s ease-out forwards; pointer-events: none;
+  }
+  @keyframes flash-fade { to { opacity: 0; } }
+
+  .card-name {
+    font-family: var(--mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.08em; color: var(--text-dim);
+    margin-bottom: 6px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .card-value {
+    font-family: var(--mono); font-size: 26px; font-weight: 600; color: #fff; line-height: 1.2;
+    word-break: break-all;
+  }
+  .card-footer { margin-top: 8px; display: flex; align-items: center; gap: 8px; }
+  .card-delta { font-family: var(--mono); font-size: 11px; padding: 2px 7px; border-radius: 4px; }
+  .card-delta.up   { background: var(--green-dim); color: var(--green); }
+  .card-delta.down { background: rgba(239,68,68,0.10); color: var(--red); }
+  .card-delta.same { background: rgba(92,99,120,0.15); color: var(--text-dim); }
+  .card-unit { font-family: var(--mono); font-size: 11px; color: var(--text-dim); }
+
+  .sparkline { margin-top: 10px; height: 28px; }
+  .sparkline svg { display: block; width: 100%; height: 100%; }
+
+  .empty-state {
+    grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+    color: var(--text-dim); font-family: var(--mono); font-size: 14px; line-height: 2;
+  }
+  .empty-state code {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 2px 8px; border-radius: 4px; font-size: 13px; color: var(--accent);
+  }
+
+  /* ── Chart Section ────────────────────────────────── */
+  .chart-container {
+    margin: 0 32px 24px;
+    background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden;
+  }
+  .chart-canvas-wrap {
+    position: relative; width: 100%; height: 340px;
+  }
+  .chart-canvas-wrap canvas {
+    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  }
+
+  /* tooltip shown on hover */
+  .chart-tooltip {
+    position: fixed; pointer-events: none;
+    background: #1a1d25; border: 1px solid var(--border-hi); border-radius: 6px;
+    padding: 8px 12px; font-family: var(--mono); font-size: 11px; color: var(--text);
+    box-shadow: 0 4px 24px rgba(0,0,0,0.5); z-index: 50;
+    display: none; max-width: 240px;
+  }
+  .chart-tooltip .tt-row { display: flex; align-items: center; gap: 6px; padding: 1px 0; }
+  .chart-tooltip .tt-swatch { width: 8px; height: 3px; border-radius: 1px; flex-shrink: 0; }
+  .chart-tooltip .tt-name  { color: var(--text-dim); flex: 1; }
+  .chart-tooltip .tt-val   { font-weight: 600; color: #fff; }
+
+  /* ── Channel Legend ───────────────────────────────── */
+  .legend {
+    padding: 12px 18px;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 6px;
+  }
+  .legend-item {
+    display: flex; align-items: center; gap: 6px;
+    font-family: var(--mono); font-size: 11px; color: var(--text-dim);
+    padding: 4px 10px; border-radius: 5px;
+    border: 1px solid var(--border);
+    cursor: pointer; user-select: none;
+    transition: border-color 0.15s, opacity 0.15s, background 0.15s;
+  }
+  .legend-item:hover { border-color: var(--border-hi); background: rgba(255,255,255,0.02); }
+  .legend-item.active { color: var(--text); border-color: var(--border-hi); }
+  .legend-item.inactive { opacity: 0.35; }
+  .legend-swatch {
+    width: 10px; height: 3px; border-radius: 1px; flex-shrink: 0;
+  }
+
+  /* ── Settings Bar ─────────────────────────────────── */
+  .settings {
+    padding: 14px 32px; border-top: 1px solid var(--border);
+    display: flex; align-items: center; gap: 16px;
+    font-family: var(--mono); font-size: 12px; color: var(--text-dim);
+    position: fixed; bottom: 0; left: 0; right: 0; background: var(--bg);
+  }
+  .settings label { display: flex; align-items: center; gap: 6px; }
+  .settings input[type="range"] { width: 80px; accent-color: var(--accent); }
+
+  @media (max-width: 600px) {
+    header, main, .settings, .section-bar { padding-left: 16px; padding-right: 16px; }
+    .chart-container { margin-left: 16px; margin-right: 16px; }
+    .grid { grid-template-columns: 1fr; }
+    .card-value { font-size: 22px; }
+    .chart-canvas-wrap { height: 260px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo" id="status-dot"></div>
+    <h1>NI VeriStand Dashboard</h1>
+  </div>
+  <div class="meta">
+    <span class="ts" id="meta-ts">Connecting…</span>
+    <span class="rate" id="meta-rate">1 Hz</span>
+  </div>
+</header>
+<div id="status-banner"></div>
+
+<!-- ── Chart ─────────────────────────────────────────── -->
+<div class="section-bar" id="chart-label" style="display:none"><span class="section-title">60-second history</span></div>
+<div class="chart-container" id="chart-section" style="display:none">
+  <div class="chart-canvas-wrap" id="chart-wrap">
+    <canvas id="chart-canvas"></canvas>
+  </div>
+  <div class="legend" id="chart-legend"></div>
+</div>
+<div class="chart-tooltip" id="tooltip"></div>
+
+<!-- ── Variable Cards ────────────────────────────────── -->
+<div class="section-bar"><span class="section-title">Live values</span></div>
+<main>
+  <div class="grid" id="grid">
+    <div class="empty-state">Connecting to server…<br>Expecting data at <code>GET /data</code></div>
+  </div>
+</main>
+
+<div class="settings">
+  <label>Poll rate
+    <input type="range" id="poll-slider" min="200" max="5000" value="1000" step="100">
+    <span id="poll-label">1.0 s</span>
+  </label>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  /* ══════════════════════════════════════════════════
+     Config & State
+     ══════════════════════════════════════════════════ */
+  const HISTORY_MS = 60_000;
+
+  let pollInterval = 1000;
+  let timer        = null;
+  let prevValues   = {};
+  let sparkHist    = {};
+
+  // Time-series: { name: [{ t: epochMs, v: number }] }
+  let series    = {};
+  let channelOn = {};   // name → bool (visible on chart)
+
+  // 12 colours chosen for pairwise contrast on dark backgrounds
+  const PALETTE = [
+    '#3b82f6','#f59e0b','#22c55e','#ef4444',
+    '#a855f7','#06b6d4','#f97316','#84cc16',
+    '#ec4899','#14b8a6','#eab308','#6366f1',
+  ];
+  const colorMap = {};
+  let colorIdx = 0;
+  function cColor(n) { if (!colorMap[n]) colorMap[n] = PALETTE[colorIdx++ % PALETTE.length]; return colorMap[n]; }
+
+  /* ── DOM refs ──────────────────────────────────────── */
+  const grid       = document.getElementById('grid');
+  const banner     = document.getElementById('status-banner');
+  const statusDot  = document.getElementById('status-dot');
+  const metaTs     = document.getElementById('meta-ts');
+  const metaRate   = document.getElementById('meta-rate');
+  const pollSlider = document.getElementById('poll-slider');
+  const pollLabel  = document.getElementById('poll-label');
+  const chartSec   = document.getElementById('chart-section');
+  const chartLabel = document.getElementById('chart-label');
+  const chartWrap  = document.getElementById('chart-wrap');
+  const canvas     = document.getElementById('chart-canvas');
+  const legendEl   = document.getElementById('chart-legend');
+  const tooltip    = document.getElementById('tooltip');
+  const ctx        = canvas.getContext('2d');
+
+  /* ══════════════════════════════════════════════════
+     Helpers
+     ══════════════════════════════════════════════════ */
+  const UNITS = new Set(['RPM','C','F','K','PSI','BAR','V','A','W','GPM','LPM','Pct','Hz','mm','m','s','ms','us','kg','lb','N','Nm']);
+  function parseUnit(n) { const l = n.split('_').pop(); return UNITS.has(l) ? l : ''; }
+  function fmtVal(v) {
+    if (typeof v === 'number') return v.toLocaleString(undefined, { maximumFractionDigits: 6 });
+    if (typeof v === 'boolean') return v ? 'TRUE' : 'FALSE';
+    return String(v);
+  }
+  function dClass(c,p) { return p==null||typeof c!=='number'?'same':c>p?'up':c<p?'down':'same'; }
+  function dText(c,p) { if (p==null||typeof c!=='number') return '—'; const d=c-p; return (d>0?'+':'')+d.toLocaleString(undefined,{maximumFractionDigits:4}); }
+
+  /* ══════════════════════════════════════════════════
+     Variable Cards
+     ══════════════════════════════════════════════════ */
+  function renderGrid(vars) {
+    const names = Object.keys(vars);
+    if (!names.length) { grid.innerHTML='<div class="empty-state">No variables published yet.</div>'; return; }
+
+    names.forEach(name => {
+      const val=vars[name], unit=parseUnit(name);
+      if (!sparkHist[name]) sparkHist[name]=[];
+      if (typeof val==='number') { sparkHist[name].push(val); if (sparkHist[name].length>60) sparkHist[name].shift(); }
+
+      let card=document.getElementById('card-'+name);
+      if (!card) {
+        card=document.createElement('div'); card.className='card'; card.id='card-'+name;
+        card.innerHTML=`<div class="card-name">${name.replace(/_/g,' ')}</div>
+          <div class="card-value" data-f="v"></div>
+          <div class="card-footer"><span class="card-delta" data-f="d"></span><span class="card-unit">${unit}</span></div>
+          <div class="sparkline" data-f="s"></div>`;
+        grid.appendChild(card);
+      }
+      card.querySelector('[data-f="v"]').textContent=fmtVal(val);
+      if (prevValues[name]!==undefined && val!==prevValues[name]) { card.classList.remove('flash'); void card.offsetWidth; card.classList.add('flash'); }
+      const dEl=card.querySelector('[data-f="d"]'); dEl.textContent=dText(val,prevValues[name]); dEl.className='card-delta '+dClass(val,prevValues[name]);
+      const a=sparkHist[name];
+      if (a.length>1) {
+        const mn=Math.min(...a), mx=Math.max(...a);
+        const hasNeg = mn < 0, hasPos = mx > 0;
+        const h=28, w=a.length*4;
+        const bw = w/a.length;
+        let bars='';
+
+        if (hasNeg && hasPos) {
+          // Mixed: zero line in the middle, positive bars up, negative bars down
+          const range = mx - mn || 1;
+          const zeroY = (mx / range) * h; // y-position of the zero line
+          for (let i=0;i<a.length;i++) {
+            const v = a[i];
+            if (v >= 0) {
+              const barH = Math.max((v / mx) * zeroY, 1);
+              bars+=`<rect x="${i*bw}" y="${zeroY-barH}" width="${Math.max(bw-1,1)}" height="${barH}" fill="#3b82f6" opacity="0.4" rx="0.5"/>`;
+            } else {
+              const barH = Math.max((Math.abs(v) / Math.abs(mn)) * (h - zeroY), 1);
+              bars+=`<rect x="${i*bw}" y="${zeroY}" width="${Math.max(bw-1,1)}" height="${barH}" fill="#ef4444" opacity="0.4" rx="0.5"/>`;
+            }
+          }
+          // Zero baseline
+          bars+=`<line x1="0" y1="${zeroY}" x2="${w}" y2="${zeroY}" stroke="#5c6378" stroke-width="0.5"/>`;
+        } else if (hasNeg) {
+          // All negative: bars hang down from the top, tallest = most negative
+          const range = Math.abs(mn) || 1;
+          for (let i=0;i<a.length;i++) {
+            const barH = Math.max((Math.abs(a[i]) / range) * h, 1);
+            bars+=`<rect x="${i*bw}" y="0" width="${Math.max(bw-1,1)}" height="${barH}" fill="#ef4444" opacity="0.4" rx="0.5"/>`;
+          }
+        } else {
+          // All positive (or zero): bars grow up from the bottom
+          const range = mx - mn || 1;
+          for (let i=0;i<a.length;i++) {
+            const barH = Math.max(((a[i]-mn)/range)*h, 1);
+            bars+=`<rect x="${i*bw}" y="${h-barH}" width="${Math.max(bw-1,1)}" height="${barH}" fill="#3b82f6" opacity="0.4" rx="0.5"/>`;
+          }
+        }
+        card.querySelector('[data-f="s"]').innerHTML=`<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none">${bars}</svg>`;
+      }
+      prevValues[name]=val;
+    });
+
+    Array.from(grid.children).forEach(el => { if (el.id?.startsWith('card-')) { const n=el.id.slice(5); if (!(n in vars)) { el.remove(); delete prevValues[n]; delete sparkHist[n]; } } });
+  }
+
+  /* ══════════════════════════════════════════════════
+     Chart — data management
+     ══════════════════════════════════════════════════ */
+  function recordSeries(vars) {
+    const now = Date.now(), cutoff = now - HISTORY_MS;
+    const incoming = [];
+
+    for (const [name, val] of Object.entries(vars)) {
+      if (typeof val !== 'number') continue;
+      incoming.push(name);
+      if (!series[name]) { series[name] = []; channelOn[name] = true; }
+      series[name].push({ t: now, v: val });
+    }
+
+    for (const name of Object.keys(series)) {
+      series[name] = series[name].filter(p => p.t >= cutoff);
+      if (!series[name].length && !incoming.includes(name)) { delete series[name]; delete channelOn[name]; }
+    }
+  }
+
+  /* ══════════════════════════════════════════════════
+     Chart — legend with toggles
+     ══════════════════════════════════════════════════ */
+  function renderLegend() {
+    const names = Object.keys(series).sort();
+    const key = names.join(',');
+    if (legendEl.dataset.key === key) {
+      names.forEach(n => { const el=document.getElementById('leg-'+n); if (el) el.className='legend-item '+(channelOn[n]?'active':'inactive'); });
+      return;
+    }
+    legendEl.dataset.key = key;
+    legendEl.innerHTML = '';
+    names.forEach(name => {
+      const item = document.createElement('div');
+      item.className = 'legend-item '+(channelOn[name]?'active':'inactive');
+      item.id = 'leg-'+name;
+      item.innerHTML = `<span class="legend-swatch" style="background:${cColor(name)}"></span>${name.replace(/_/g,' ')}`;
+      item.addEventListener('click', () => { channelOn[name]=!channelOn[name]; renderLegend(); drawChart(); });
+      legendEl.appendChild(item);
+    });
+  }
+
+  /* ══════════════════════════════════════════════════
+     Chart — canvas rendering
+     ══════════════════════════════════════════════════ */
+  // Cached layout used by both draw and hover-hit
+  let L = {};   // { pad, cw, ch, tMin, tMax, vMin, vMax, xOf, yOf, W, H }
+
+  function drawChart() {
+    const dpr = window.devicePixelRatio || 1;
+    const rect = chartWrap.getBoundingClientRect();
+    const W = rect.width, H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+    const pad = { top: 20, right: 22, bottom: 34, left: 68 };
+    const cw = W - pad.left - pad.right;
+    const ch = H - pad.top - pad.bottom;
+
+    ctx.clearRect(0, 0, W, H);
+
+    const visible = Object.entries(series).filter(([n]) => channelOn[n]);
+    if (!visible.length) {
+      ctx.fillStyle = '#5c6378'; ctx.font = '13px IBM Plex Mono, monospace'; ctx.textAlign = 'center';
+      ctx.fillText('Enable channels below to plot', W / 2, H / 2);
+      L = {}; return;
+    }
+
+    const now = Date.now();
+    const tMin = now - HISTORY_MS, tMax = now;
+    let vMin = Infinity, vMax = -Infinity;
+    for (const [, pts] of visible) for (const p of pts) { if (p.v < vMin) vMin = p.v; if (p.v > vMax) vMax = p.v; }
+    if (vMin === vMax) { vMin -= 1; vMax += 1; }
+    const vPad = (vMax - vMin) * 0.08; vMin -= vPad; vMax += vPad;
+
+    const xOf = t => pad.left + ((t - tMin) / (tMax - tMin)) * cw;
+    const yOf = v => pad.top  + (1 - (v - vMin) / (vMax - vMin)) * ch;
+
+    L = { pad, cw, ch, tMin, tMax, vMin, vMax, xOf, yOf, W, H, visible };
+
+    // ── Gridlines (horizontal) ──────────────────────
+    const nTicks = 5;
+    ctx.strokeStyle = '#1e2330'; ctx.lineWidth = 1;
+    ctx.font = '10px IBM Plex Mono, monospace'; ctx.fillStyle = '#5c6378';
+    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+    for (let i = 0; i <= nTicks; i++) {
+      const v = vMin + (vMax - vMin) * (i / nTicks), y = yOf(v);
+      ctx.beginPath(); ctx.moveTo(pad.left, y); ctx.lineTo(W - pad.right, y); ctx.stroke();
+      // Smart label formatting
+      const range = vMax - vMin;
+      let label;
+      if (range < 0.1)      label = v.toFixed(4);
+      else if (range < 1)   label = v.toFixed(3);
+      else if (range < 10)  label = v.toFixed(2);
+      else if (range < 100) label = v.toFixed(1);
+      else                  label = v.toFixed(0);
+      ctx.fillText(label, pad.left - 8, y);
+    }
+
+    // ── Gridlines (vertical / time) ─────────────────
+    ctx.textAlign = 'center'; ctx.textBaseline = 'top';
+    for (const s of [0, 10, 20, 30, 40, 50, 60]) {
+      const t = tMax - s * 1000; if (t < tMin) continue;
+      const x = xOf(t);
+      ctx.beginPath(); ctx.moveTo(x, pad.top); ctx.lineTo(x, pad.top + ch); ctx.stroke();
+      ctx.fillText(s === 0 ? 'now' : `-${s}s`, x, pad.top + ch + 8);
+    }
+
+    // ── Axes ────────────────────────────────────────
+    ctx.strokeStyle = '#2a3040'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(pad.left, pad.top); ctx.lineTo(pad.left, pad.top + ch); ctx.lineTo(W - pad.right, pad.top + ch); ctx.stroke();
+
+    // ── Plot lines ──────────────────────────────────
+    for (const [name, pts] of visible) {
+      if (pts.length < 2) continue;
+      const color = cColor(name);
+
+      // Faint fill under the line
+      ctx.fillStyle = color.replace(')', ', 0.06)').replace('rgb', 'rgba');
+      ctx.beginPath();
+      ctx.moveTo(xOf(pts[0].t), yOf(pts[0].v));
+      for (let i = 1; i < pts.length; i++) ctx.lineTo(xOf(pts[i].t), yOf(pts[i].v));
+      ctx.lineTo(xOf(pts[pts.length-1].t), pad.top + ch);
+      ctx.lineTo(xOf(pts[0].t), pad.top + ch);
+      ctx.closePath(); ctx.fill();
+
+      // Line
+      ctx.strokeStyle = color; ctx.lineWidth = 1.8; ctx.lineJoin = 'round';
+      ctx.beginPath();
+      for (let i = 0; i < pts.length; i++) { const x = xOf(pts[i].t), y = yOf(pts[i].v); i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y); }
+      ctx.stroke();
+
+      // Latest-value dot
+      const last = pts[pts.length - 1];
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(xOf(last.t), yOf(last.v), 3.5, 0, Math.PI * 2); ctx.fill();
+      // Glow ring
+      ctx.strokeStyle = color; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.arc(xOf(last.t), yOf(last.v), 6, 0, Math.PI * 2); ctx.globalAlpha = 0.3; ctx.stroke(); ctx.globalAlpha = 1;
+    }
+  }
+
+  /* ══════════════════════════════════════════════════
+     Chart — crosshair & tooltip on hover
+     ══════════════════════════════════════════════════ */
+  function handleChartHover(e) {
+    if (!L.xOf) { tooltip.style.display = 'none'; return; }
+
+    const rect = canvas.getBoundingClientRect();
+    const mx = e.clientX - rect.left, my = e.clientY - rect.top;
+
+    // Outside plot area?
+    if (mx < L.pad.left || mx > L.W - L.pad.right || my < L.pad.top || my > L.pad.top + L.ch) {
+      tooltip.style.display = 'none'; return;
+    }
+
+    // Find time at cursor
+    const tCursor = L.tMin + ((mx - L.pad.left) / L.cw) * (L.tMax - L.tMin);
+    const ago = Math.max(0, (L.tMax - tCursor) / 1000);
+
+    // Nearest point per visible channel
+    const rows = [];
+    for (const [name, pts] of L.visible) {
+      let best = null, bestDist = Infinity;
+      for (const p of pts) { const d = Math.abs(p.t - tCursor); if (d < bestDist) { bestDist = d; best = p; } }
+      if (best && bestDist < 3000) rows.push({ name, v: best.v, color: cColor(name) });
+    }
+
+    if (!rows.length) { tooltip.style.display = 'none'; return; }
+
+    // Redraw chart with crosshair
+    drawChart();
+    ctx.setTransform(window.devicePixelRatio||1,0,0,window.devicePixelRatio||1,0,0);
+    ctx.strokeStyle = 'rgba(200,205,216,0.15)'; ctx.lineWidth = 1; ctx.setLineDash([4,3]);
+    ctx.beginPath(); ctx.moveTo(mx, L.pad.top); ctx.lineTo(mx, L.pad.top + L.ch); ctx.stroke();
+    ctx.setLineDash([]);
+
+    // Build tooltip
+    let html = `<div style="color:var(--text-dim);margin-bottom:4px">${ago.toFixed(1)}s ago</div>`;
+    rows.sort((a,b) => b.v - a.v);
+    for (const r of rows) {
+      html += `<div class="tt-row"><span class="tt-swatch" style="background:${r.color}"></span><span class="tt-name">${r.name.replace(/_/g,' ')}</span><span class="tt-val">${r.v.toLocaleString(undefined,{maximumFractionDigits:4})}</span></div>`;
+    }
+    tooltip.innerHTML = html;
+    tooltip.style.display = 'block';
+
+    // Position tooltip near cursor but keep it on-screen
+    const tw = tooltip.offsetWidth, th = tooltip.offsetHeight;
+    let tx = e.clientX + 14, ty = e.clientY - th / 2;
+    if (tx + tw > window.innerWidth - 8) tx = e.clientX - tw - 14;
+    if (ty < 4) ty = 4; if (ty + th > window.innerHeight - 4) ty = window.innerHeight - th - 4;
+    tooltip.style.left = tx + 'px'; tooltip.style.top = ty + 'px';
+  }
+
+  canvas.addEventListener('mousemove', handleChartHover);
+  canvas.addEventListener('mouseleave', () => { tooltip.style.display = 'none'; drawChart(); });
+
+  /* ══════════════════════════════════════════════════
+     Polling
+     ══════════════════════════════════════════════════ */
+  async function poll() {
+    try {
+      const resp = await fetch('/data', { cache: 'no-store' });
+      const data = await resp.json();
+
+      if (data.error) { showBanner(data.error); setConnected(false); return; }
+      hideBanner(); setConnected(true);
+      metaTs.textContent = data._timestamp ? 'App: ' + data._timestamp : 'Updated: ' + new Date().toLocaleTimeString();
+
+      const vars = data.variables || {};
+      renderGrid(vars);
+
+      recordSeries(vars);
+      const hasChart = Object.keys(series).length > 0;
+      chartSec.style.display   = hasChart ? '' : 'none';
+      chartLabel.style.display = hasChart ? '' : 'none';
+      if (hasChart) { renderLegend(); drawChart(); }
+    } catch (e) {
+      showBanner('Cannot reach server — retrying…'); setConnected(false);
+    }
+  }
+
+  function setConnected(s) { statusDot.classList.toggle('disconnected', !s); }
+  function showBanner(m)   { banner.textContent = m; banner.style.display = 'block'; }
+  function hideBanner()    { banner.style.display = 'none'; }
+
+  function startPolling() { clearInterval(timer); timer = setInterval(poll, pollInterval); poll(); }
+
+  /* ══════════════════════════════════════════════════
+     Controls
+     ══════════════════════════════════════════════════ */
+  pollSlider.addEventListener('input', () => {
+    pollInterval = parseInt(pollSlider.value, 10);
+    pollLabel.textContent = (pollInterval / 1000).toFixed(1) + ' s';
+    metaRate.textContent  = (1000 / pollInterval).toFixed(1) + ' Hz';
+    startPolling();
+  });
+
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => { if (Object.keys(series).length) drawChart(); }, 100); });
+
+  startPolling();
+})();
+</script>
+</body>
+</html>

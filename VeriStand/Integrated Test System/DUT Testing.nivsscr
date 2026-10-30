@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SourceFile Checksum="D641EE5F2152F52AB4ABE9965A3095949C215EECD8641A3CF30BEEEF924C9DEA2EF33D3EDC0734B992765E3300048E49BD4566D3E30F91C10CF73921437A0008" Timestamp="1DD680A32707B6E" xmlns="http://www.ni.com/PlatformFramework">
+	<SourceModelFeatureSet>
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Configuration Based Software Core" Name="http://www.ni.com/ConfigurationBasedSoftware.Core" OldestCompatibleVersion="6.3.0.49152" Version="9.15.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="LabVIEW Controls" Name="http://www.ni.com/Controls.LabVIEW.Design" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PanelCommon" OldestCompatibleVersion="6.1.0.0" Version="6.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PlatformFramework" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="VeriStand Core Components" Name="http://www.ni.com/VeriStand" OldestCompatibleVersion="9.0.0.49152" Version="9.0.0.49152" />
+		<ApplicationVersionInfo Build="13.5.0.49855" Name="VeriStand" Version="9.21.0.49855" />
+	</SourceModelFeatureSet>
+	<Screen Id="f7dc6fa6d33b479fa1759ae3d42ba0af" xmlns="http://www.ni.com/VeriStand">
+		<ScreenSurface Height="[float]1619" Id="4ab3452719da46ce9bee3b4eea8d45a2" Left="[float]0" PanelSizeMode="Fixed" Top="[float]0" Width="[float]2000" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core">
+			<ChannelCheckBox BaseName="[string]Checkbox" Channel="[string]Aliases/DUT/Inputs/DUT.DigitalInput" Content="[string]Off/On" Height="[float]16" Id="1bda2f4a1eee407cb868b7a61a2be71a" Label="[UIModel]e887f7aa2b1a45578f79e13712c40462" Left="[float]71" MinHeight="[float]16" MinWidth="[float]16" Top="[float]248" Width="[float]59" />
+			<Label Height="[float]16" Id="e887f7aa2b1a45578f79e13712c40462" LabelOwner="[UIModel]1bda2f4a1eee407cb868b7a61a2be71a" Left="[float]71" Text="[string]DUT.DigitalInput" Top="[float]228" Width="[float]88" xmlns="http://www.ni.com/PanelCommon" />
+			<ChannelLED BaseName="[string]Square LED" Channel="[string]Aliases/DUT/Outputs/DUT.DigitalOutput" ContentVisibility="[Visibility]Collapsed" FalseContent="[string]Off" Height="[float]30" Id="f6ebf5d8bf4f608cbc561dc315e4a3" IsReadOnly="[bool]True" Label="[UIModel]59347485470c46d59d81233c4b15c112" Left="[float]242" MinHeight="[float]20" MinWidth="[float]20" Shape="[LEDShape]Square" Top="[float]241" TrueContent="[string]On" Width="[float]30" />
+			<Label Height="[float]16" Id="59347485470c46d59d81233c4b15c112" LabelOwner="[UIModel]f6ebf5d8bf4f608cbc561dc315e4a3" Left="[float]242" Text="[string]DUT.DigitalOutput" Top="[float]221" Width="[float]98" xmlns="http://www.ni.com/PanelCommon" />
+			<ChannelMeter BaseName="[string]Meter" Channel="[string]Aliases/PowerSupply/PowerSupply.MeasuredVoltage" Height="[float]130" Id="8fda6c655c7e4ce08924557bf83a0960" InteractionMode="[NumericPointerInteractionModes]EditRange" Label="[UIModel]4b32b92d24fb4b87b0fae11cc7cd3497" Left="[float]72" Maximum="[double]20" MinHeight="[float]65" MinWidth="[float]110" Minimum="[double]0" Top="[float]54" ValueType="[Type]Double" Width="[float]200" />
+			<Label Height="[float]16" Id="4b32b92d24fb4b87b0fae11cc7cd3497" LabelOwner="[UIModel]8fda6c655c7e4ce08924557bf83a0960" Left="[float]72" Text="[string]PowerSupply.MeasuredVoltage" Top="[float]34" Width="[float]164" xmlns="http://www.ni.com/PanelCommon" />
+			<ChannelMeter BaseName="[string]Meter" Channel="[string]Aliases/PowerSupply/PowerSupply.MeasuredCurrent" Height="[float]130" Id="1f26fee15f4e4f71b1f269f3822c28cf" InteractionMode="[NumericPointerInteractionModes]EditRange" Label="[UIModel]6ffda07206c34bd681ce800062f13959" Left="[float]360" Maximum="[double]20" MinHeight="[float]65" MinWidth="[float]110" Minimum="[double]0" Top="[float]54" ValueType="[Type]Double" Width="[float]200" />
+			<Label Height="[float]16" Id="6ffda07206c34bd681ce800062f13959" LabelOwner="[UIModel]1f26fee15f4e4f71b1f269f3822c28cf" Left="[float]360" Text="[string]PowerSupply.MeasuredCurrent" Top="[float]34" Width="[float]164" xmlns="http://www.ni.com/PanelCommon" />
+		</ScreenSurface>
+	</Screen>
+</SourceFile>

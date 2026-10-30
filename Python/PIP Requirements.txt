@@ -1,0 +1,5 @@
+niveristand
+matplotlib
+npTDMS
+pywin32
+paramiko

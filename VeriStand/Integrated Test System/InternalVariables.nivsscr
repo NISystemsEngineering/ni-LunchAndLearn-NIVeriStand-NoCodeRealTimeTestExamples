@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SourceFile Checksum="E823391EFD103721F44BA94850327CD1BF797D9FE2B71F4A7FEF6B754CFCA257BF9AF07EE5AE8C4C4DBF3DE19DFD35BA31D503F40437A1581CE28D6F55F22DBC" Timestamp="1DD67D8053BC124" xmlns="http://www.ni.com/PlatformFramework">
+	<SourceModelFeatureSet>
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Configuration Based Software Core" Name="http://www.ni.com/ConfigurationBasedSoftware.Core" OldestCompatibleVersion="6.3.0.49152" Version="9.15.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="LabVIEW Controls" Name="http://www.ni.com/Controls.LabVIEW.Design" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PanelCommon" OldestCompatibleVersion="6.1.0.0" Version="6.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PlatformFramework" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="VeriStand Core Components" Name="http://www.ni.com/VeriStand" OldestCompatibleVersion="9.0.0.49152" Version="9.0.0.49152" />
+		<ApplicationVersionInfo Build="13.5.0.49855" Name="VeriStand" Version="9.21.0.49855" />
+	</SourceModelFeatureSet>
+	<Screen Id="4fcb18bc1cd341b4954e290004db3d1e" xmlns="http://www.ni.com/VeriStand">
+		<ScreenSurface Height="[float]1600" Id="185171844df48eb911385c886bb6181" Left="[float]0" PanelSizeMode="Fixed" Top="[float]0" Width="[float]2000" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core">
+			<Cluster AutoArrange="[AutoArrange]ArrangeVertically" Height="[float]112" Id="beb05cdacbac4addbb56a124054146e7" Label="[UIModel]d6eddd11d0f34c23a4599674c7a11141" Left="[float]102" Top="[float]62" Width="[float]130" xmlns="http://www.ni.com/PanelCommon">
+				<ChannelRingSelector AllowNonSequentialValues="[bool]True" AllowUndefinedValueEntry="[bool]False" BaseName="[string]Text Ring" Channel="[string]Aliases/Logging/Log.SlowSpeedStatus" Height="[float]24" Id="68891fd34787403fa492bf97b203d069" InteractionMode="[SelectorInteractionModes]ReadOnly" IsTypeAheadEnabled="[bool]True" Label="[UIModel]7e27bc54f09e4d9bbe6ca4538b2bada6" Left="[float]4" MinHeight="[float]24" Top="[float]24" ValueType="[Type]Double" VisualMode="[SelectorVisualMode]RingStyle" Width="[float]112" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core">
+					<RingSelectorInfo DisplayValue="[string]File Closed" IsEnabled="[bool]True" Value="[double]0" ValueType="[Type]Double" xmlns="http://www.ni.com/Controls.LabVIEW.Design" />
+					<RingSelectorInfo DisplayValue="[string]File Open" IsEnabled="[bool]True" Value="[double]1" ValueType="[Type]Double" xmlns="http://www.ni.com/Controls.LabVIEW.Design" />
+				</ChannelRingSelector>
+				<Label Height="[float]16" Id="7e27bc54f09e4d9bbe6ca4538b2bada6" LabelOwner="[UIModel]68891fd34787403fa492bf97b203d069" Left="[float]4" Text="[string]Log.SlowSpeedStatus" Top="[float]4" Width="[float]114" />
+				<ChannelNumericText BaseName="[string]Numeric" Channel="[string]Aliases/Logging/Log.Trigger" Height="[float]24" Id="4482e85936904cadb1fc3db811690edc" Label="[UIModel]cdb6210933c0459b8a58700484164597" Left="[float]4" Top="[float]76" UnitAnnotation="[string]" ValueFormatter="[string]LV:G5" ValueType="[Type]Double" Width="[float]112" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core" />
+				<Label Height="[float]16" Id="cdb6210933c0459b8a58700484164597" LabelOwner="[UIModel]4482e85936904cadb1fc3db811690edc" Left="[float]4" Text="[string]Log.Trigger" Top="[float]56" Width="[float]60" />
+			</Cluster>
+			<Label Height="[float]16" Id="d6eddd11d0f34c23a4599674c7a11141" LabelOwner="[UIModel]beb05cdacbac4addbb56a124054146e7" Left="[float]102" Text="[string]Logging" Top="[float]42" Width="[float]44" xmlns="http://www.ni.com/PanelCommon" />
+			<Cluster AutoArrange="[AutoArrange]ArrangeVertically" Height="[float]112" Id="466438371ee442e386d9f8d3893faf16" Label="[UIModel]2f509a065c98464b9ea5d7a7f1726cdb" Left="[float]282" Top="[float]62" Width="[float]132" xmlns="http://www.ni.com/PanelCommon">
+				<ChannelNumericText BaseName="[string]Numeric" Channel="[string]Aliases/InternalVariables/AbsoluteTime" Height="[float]24" Id="fcc3381adc2043c7acc760ad6e43ae4a" IsReadOnly="[bool]True" Label="[UIModel]7532289c71844440a544e72edeb70d1e" Left="[float]4" Top="[float]24" UnitAnnotation="[string]sec" ValueFormatter="[string]DisplayFormat=Automatic:Digits=2:DigitDisplayType=DigitsOfPrecision:MinimumFieldWidth=0:AlwaysShowSign=False:ShowThousandsSeparator=False" ValueType="[Type]Double" Width="[float]116" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core" />
+				<Label Height="[float]16" Id="7532289c71844440a544e72edeb70d1e" LabelOwner="[UIModel]fcc3381adc2043c7acc760ad6e43ae4a" Left="[float]4" Text="[string]AbsoluteTime" Top="[float]4" Width="[float]74" />
+				<ChannelNumericText BaseName="[string]Numeric" Channel="[string]Aliases/InternalVariables/HPCount" Height="[float]24" Id="fb1290580bb746b5a63618c22448297a" IsReadOnly="[bool]True" Label="[UIModel]87b00b30b84e4e109439361e2b40e864" Left="[float]4" Top="[float]76" UnitAnnotation="[string]" ValueFormatter="[string]LV:G5" ValueType="[Type]Double" Width="[float]116" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core" />
+				<Label Height="[float]16" Id="87b00b30b84e4e109439361e2b40e864" LabelOwner="[UIModel]fb1290580bb746b5a63618c22448297a" Left="[float]4" Text="[string]HPCount" Top="[float]56" Width="[float]48" />
+			</Cluster>
+			<Label Height="[float]16" Id="2f509a065c98464b9ea5d7a7f1726cdb" LabelOwner="[UIModel]466438371ee442e386d9f8d3893faf16" Left="[float]282" Text="[string]InternalVariables" Top="[float]42" Width="[float]88" xmlns="http://www.ni.com/PanelCommon" />
+		</ScreenSurface>
+	</Screen>
+</SourceFile>

@@ -1,0 +1,299 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<RealTimeSequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<FileFormatVersion Major="2012" Minor="0" Fix="0" Build="0" />
+	<Version Major="1" Minor="0" Fix="0" Build="24" />
+	<References>
+		<Reference>
+			<Path>&lt;VeriStand&gt;:\nivs.lib\Sequence Library\Standard\Timing\WaitUntilSettled.nivsseq</Path>
+			<Alias>WaitUntilSettled</Alias>
+		</Reference>
+		<Reference>
+			<Path>&lt;VeriStand&gt;:\nivs.lib\Sequence Library\Standard\Timing\Wait.nivsseq</Path>
+			<Alias>Wait</Alias>
+		</Reference>
+	</References>
+	<Variables>
+		<ReturnType>
+			<Identifier>Pass</Identifier>
+			<DefaultValue xsi:type="BooleanValue">
+				<Value>false</Value>
+			</DefaultValue>
+		</ReturnType>
+		<Parameters />
+		<LocalVariables>
+			<LocalDeclaration>
+				<Identifier>FirstSetpoint</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>120</Value>
+				</DefaultValue>
+			</LocalDeclaration>
+			<LocalDeclaration>
+				<Identifier>UpperLimit</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+			</LocalDeclaration>
+			<LocalDeclaration>
+				<Identifier>LowerLimit</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+			</LocalDeclaration>
+			<LocalDeclaration>
+				<Identifier>SecondSetpoint</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>60</Value>
+				</DefaultValue>
+			</LocalDeclaration>
+			<LocalDeclaration>
+				<Identifier>Continue</Identifier>
+				<DefaultValue xsi:type="BooleanValue">
+					<Value>false</Value>
+				</DefaultValue>
+			</LocalDeclaration>
+		</LocalVariables>
+		<ChannelReferences>
+			<ChannelReferenceDeclaration>
+				<Identifier>Manual_Control</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Targets/Controller/Custom Devices/Control Addon/TemperatureControl/Channels/Manual Control" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>Chamber_EnableTempControl</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/Chamber/Chamber.EnableTempControl" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>Chamber_TempSetpoint</Identifier>
+				<DefaultValue xsi:type="DoubleValue" Units="F">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/Chamber/Chamber.TempSetpoint" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>DUT_DigitalInput</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/DUT/Inputs/DUT.DigitalInput" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>DUT_Temp0</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/DUT/InstrumentedSensors/DUT.Temp0" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>DUT_DigitalOutput</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/DUT/Outputs/DUT.DigitalOutput" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>Log_Trigger</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/Logging/Log.Trigger" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>Chamber_ShockSetpoint</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/Chamber/Chamber.ShockSetpoint" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>Manual_Output</Identifier>
+				<DefaultValue xsi:type="DoubleValue" Units="C">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Targets/Controller/Custom Devices/Control Addon/TemperatureControl/Channels/Manual Output" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>PowerSupply_EnableOutput</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/PowerSupply/PowerSupply.EnableOutput" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>PowerSupply_EnablePeriodic</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/PowerSupply/PowerSupply.EnablePeriodic" />
+			</ChannelReferenceDeclaration>
+			<ChannelReferenceDeclaration>
+				<Identifier>PowerSupply_VoltageCmd</Identifier>
+				<DefaultValue xsi:type="DoubleValue">
+					<Value>0</Value>
+				</DefaultValue>
+				<Channel Path="Aliases/PowerSupply/PowerSupply.VoltageCmd" />
+			</ChannelReferenceDeclaration>
+		</ChannelReferences>
+	</Variables>
+	<Code>
+		<Setup>
+			<Body>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Continue = true</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Manual_Control = 1</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Manual_Output = 75</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Chamber_TempSetpoint = 75</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Wait(5)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Log_Trigger = 1</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Wait(5)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>PowerSupply_EnablePeriodic = 1</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>PowerSupply_EnableOutput = 1</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>PowerSupply_VoltageCmd = 13</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Wait(10)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Manual_Control = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Chamber_EnableTempControl = 1</ExpressionString>
+				</Statement>
+			</Body>
+		</Setup>
+		<Main>
+			<Body>
+				<Statement xsi:type="Multitask">
+					<Task>
+						<Body>
+							<Statement xsi:type="Expression">
+								<ExpressionString>Chamber_TempSetpoint = FirstSetpoint</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>Chamber_ShockSetpoint = 5</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>UpperLimit = FirstSetpoint + 2</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>LowerLimit= FirstSetpoint - 2</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 15, 120)</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>Chamber_TempSetpoint = SecondSetpoint</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>Chamber_ShockSetpoint = 10</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>UpperLimit = SecondSetpoint + 2</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>LowerLimit= SecondSetpoint - 2</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 15, 120)</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Expression">
+								<ExpressionString>Continue = false</ExpressionString>
+							</Statement>
+						</Body>
+						<TaskName>TempProfile</TaskName>
+					</Task>
+					<Task>
+						<Body>
+							<Statement xsi:type="WhileLoop">
+								<AutoYield>true</AutoYield>
+								<Body>
+									<Statement xsi:type="Expression">
+										<ExpressionString>DUT_DigitalInput = 0</ExpressionString>
+									</Statement>
+									<Statement xsi:type="Expression">
+										<ExpressionString>Wait(2)</ExpressionString>
+									</Statement>
+									<Statement xsi:type="Expression">
+										<ExpressionString>DUT_DigitalInput = 1</ExpressionString>
+									</Statement>
+									<Statement xsi:type="Expression">
+										<ExpressionString>Wait(2)</ExpressionString>
+									</Statement>
+								</Body>
+								<LoopTest>
+									<ExpressionString>Continue == true</ExpressionString>
+								</LoopTest>
+							</Statement>
+						</Body>
+						<TaskName>DUTControl</TaskName>
+					</Task>
+				</Statement>
+			</Body>
+		</Main>
+		<CleanUp>
+			<Body>
+				<Statement xsi:type="Expression">
+					<ExpressionString>DUT_DigitalInput = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Chamber_TempSetpoint = 75</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>UpperLimit = Chamber_TempSetpoint + 2</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>LowerLimit= Chamber_TempSetpoint - 2</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>PowerSupply_VoltageCmd = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>PowerSupply_EnableOutput = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 5, 120)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Manual_Control = 1</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Manual_Output = 75</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Chamber_EnableTempControl = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Wait(10)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Log_Trigger = 0</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Expression">
+					<ExpressionString>Pass = true</ExpressionString>
+				</Statement>
+			</Body>
+		</CleanUp>
+	</Code>
+</RealTimeSequence>

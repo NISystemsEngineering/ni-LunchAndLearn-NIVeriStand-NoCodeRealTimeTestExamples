@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CustomDevice xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="Custom Device.xsd">
+  <XSDVersion Major="2010" Minor="0" Fix="0" Build="0" />
+  <AddMenu>
+    <eng>NI::WebPage Addon</eng>
+    <loc>NI::WebPage Addon</loc>
+  </AddMenu>
+  <Version>1.0.0</Version>
+  <Type>Inline HW Interface</Type>
+  <MaxOccurrence>1</MaxOccurrence>
+  <MainPageGUID>61c42cce-7210-4013-8cc7-f6e7840422ea</MainPageGUID>
+  <InitializationVI>
+    <Type>Action</Type>
+    <Item2Launch>
+      <Type>To Common Doc Dir</Type>
+      <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Initialization VI.vi</Path>
+    </Item2Launch>
+  </InitializationVI>
+  <CustomDeviceVI>
+    <SourceDistribution>
+      <Source>
+        <SupportedTarget>Windows</SupportedTarget>
+        <Source>
+          <Type>To Common Doc Dir</Type>
+          <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Engine Windows.llb\RT Driver VI.vi</Path>
+        </Source>
+        <RealTimeSystemDestination>c:\ni-rt\VeriStand\Custom Devices\WebPage Addon\WebPage Addon Engine Windows.llb\RT Driver VI.vi</RealTimeSystemDestination>
+      </Source>
+      <Source>
+        <SupportedTarget>Linux_x64</SupportedTarget>
+        <Source>
+          <Type>To Common Doc Dir</Type>
+          <Path>Custom Devices\WebPage Addon\Linux_x64\WebPage Addon Engine Linux64.llb\RT Driver VI.vi</Path>
+        </Source>
+        <RealTimeSystemDestination>c:\ni-rt\VeriStand\Custom Devices\WebPage Addon\WebPage Addon Engine Linux64.llb\RT Driver VI.vi</RealTimeSystemDestination>
+      </Source>
+    </SourceDistribution>
+  </CustomDeviceVI>
+  <Dependencies>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Python WebPage\server.py</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\dashboard\server.py</RealTimeSystemDestination>
+	</Dependency>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Python WebPage\index.html</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\dashboard\index.html</RealTimeSystemDestination>
+	</Dependency>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Python WebPage\favicon.ico</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\dashboard\favicon.ico</RealTimeSystemDestination>
+	</Dependency>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Python WebPage\dashboard_pb2.py</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\dashboard\dashboard_pb2.py</RealTimeSystemDestination>
+	</Dependency>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Python WebPage\dashboard_pb2_grpc.py</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\dashboard\dashboard_pb2_grpc.py</RealTimeSystemDestination>
+	</Dependency>
+	<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Linux_x64\gRPCWebPageInterface.lvlibp</Path>
+		</Source>
+		<RealTimeSystemDestination>c:\ni-rt\VeriStand\Custom Devices\WebPage Addon\gRPCWebPageInterface.lvlibp</RealTimeSystemDestination>
+	</Dependency>
+		<Dependency>
+		<SupportedTarget>Linux_x64</SupportedTarget>
+		<Source>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Windows\Libraries\LinuxRT\liblabview_grpc_server.so</Path>
+		</Source>
+		<RealTimeSystemDestination>home:\lvuser\natinst\bin\liblabview_grpc_server.so</RealTimeSystemDestination>
+	</Dependency>
+  </Dependencies>
+  <Pages>
+    <Page>
+      <Name>
+        <eng>WebPage Addon</eng>
+        <loc>WebPage Addon</loc>
+      </Name>
+      <GUID>61c42cce-7210-4013-8cc7-f6e7840422ea</GUID>
+      <Glyph>
+        <Type>To Common Doc Dir</Type>
+        <Path>Custom Devices\WebPage Addon\Windows\Glyphs\webpage.png</Path>
+      </Glyph>
+      <Item2Launch>
+        <Type>To Common Doc Dir</Type>
+        <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Main Page.vi</Path>
+      </Item2Launch>
+      <RunTimeMenu>
+	    <MenuItem>
+          <GUID>5A89BB68-5F3E-4749-90F0-F852C20FCA53</GUID>
+          <Type>Action</Type>
+          <Execution>silent</Execution>
+          <Name>
+            <eng>Select Channels</eng>
+            <loc>Select Channels</loc>
+          </Name>
+          <Item2Launch>
+            <Type>To Common Doc Dir</Type>
+            <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Select Channels to Publish.vi</Path>
+          </Item2Launch>
+        </MenuItem>
+		<MenuItem>
+			<GUID>7755077A-1485-13A6-5674A23FB86277FF</GUID>
+			<Type>Separator</Type>
+			<Name>
+				<eng>.</eng>
+				<loc>.</loc>
+			</Name>
+			<Item2Launch>
+				<Type>Absolute</Type>
+				<Path>.</Path>
+			</Item2Launch>
+		</MenuItem>
+        <MenuItem>
+          <GUID>31CBF2A7-3D14-4E9C-BB18-EFC5DAB60AD8</GUID>
+          <Type>Action</Type>
+          <Execution>silent</Execution>
+          <Name>
+            <eng>Disable</eng>
+            <loc>Disable</loc>
+          </Name>
+          <Item2Launch>
+            <Type>To Common Doc Dir</Type>
+            <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\EnableDisable Main Page.vi</Path>
+          </Item2Launch>
+        </MenuItem>
+		<MenuItem>
+			<GUID>7755077A-1485-13A6-5674A23FB86277FF</GUID>
+			<Type>Separator</Type>
+			<Name>
+				<eng>.</eng>
+				<loc>.</loc>
+			</Name>
+			<Item2Launch>
+				<Type>Absolute</Type>
+				<Path>.</Path>
+			</Item2Launch>
+		</MenuItem>
+  		<MenuItem>
+			<GUID>9b0c9e46-6c6c-4179-a86b-d3f8a44bbc9a</GUID>
+			<Type>Action</Type>
+			<Execution>silent</Execution>
+			<Name>
+				<eng>Export Configuration</eng>
+				<loc>Export Configuration</loc>
+			</Name>
+			<Item2Launch>
+				<Type>To Common Doc Dir</Type>
+				<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Export Configuration RTM.vi</Path>
+			</Item2Launch>
+		</MenuItem>
+	</RunTimeMenu>
+      <ActionVIOnCompile>
+        <Type>To Common Doc Dir</Type>
+        <Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\ActionVIOnCompile.vi</Path>
+      </ActionVIOnCompile>
+    </Page>
+	<Page>
+		<Name>
+			<eng>WebPage Addon Disabled</eng>
+			<loc>WebPage Addon Disabled</loc>
+		</Name>
+		<GUID>5F723691-027A-41FF-9930-77045F19C5F0</GUID>
+		<Glyph>
+        <Type>To Common Doc Dir</Type>
+        <Path>Custom Devices\WebPage Addon\Windows\Glyphs\webpage_disabled.png</Path>
+		</Glyph>
+		<Item2Launch>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Main Page.vi</Path>
+		</Item2Launch>
+		<RunTimeMenu>
+			<MenuItem>
+				<GUID>5A89BB68-5F3E-4749-90F0-F852C20FCA53</GUID>
+				<Type>Action</Type>
+				<Execution>silent</Execution>
+				<Name>
+					<eng>Select Channels</eng>
+					<loc>Select Channels</loc>
+				</Name>
+				<Item2Launch>
+					<Type>To Common Doc Dir</Type>
+					<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Select Channels to Publish.vi</Path>
+				</Item2Launch>
+			</MenuItem>
+			<MenuItem>
+				<GUID>7755077A-1485-13A6-5674A23FB86277FF</GUID>
+				<Type>Separator</Type>
+				<Name>
+					<eng>.</eng>
+					<loc>.</loc>
+				</Name>
+				<Item2Launch>
+					<Type>Absolute</Type>
+					<Path>.</Path>
+				</Item2Launch>
+			</MenuItem>
+			<MenuItem>
+			  <GUID>1159EE84-C4DF-4E09-AEF4-37318A78D1FA</GUID>
+			  <Type>Action</Type>
+			  <Execution>silent</Execution>
+			  <Name>
+				<eng>Enable</eng>
+				<loc>Enable</loc>
+			  </Name>
+			  <Item2Launch>
+				<Type>To Common Doc Dir</Type>
+				<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\EnableDisable Main Page.vi</Path>
+			  </Item2Launch>
+			</MenuItem>
+			<MenuItem>
+				<GUID>7755077A-1485-13A6-5674A23FB86277FF</GUID>
+				<Type>Separator</Type>
+				<Name>
+					<eng>.</eng>
+					<loc>.</loc>
+				</Name>
+				<Item2Launch>
+					<Type>Absolute</Type>
+					<Path>.</Path>
+				</Item2Launch>
+			</MenuItem>
+			<MenuItem>
+				<GUID>9b0c9e46-6c6c-4179-a86b-d3f8a44bbc9a</GUID>
+				<Type>Action</Type>
+				<Execution>silent</Execution>
+				<Name>
+					<eng>Export Configuration</eng>
+					<loc>Export Configuration</loc>
+				</Name>
+				<Item2Launch>
+					<Type>To Common Doc Dir</Type>
+					<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\Export Configuration RTM.vi</Path>
+				</Item2Launch>
+			</MenuItem>
+		</RunTimeMenu>
+		<ActionVIOnCompile>
+			<Type>To Common Doc Dir</Type>
+			<Path>Custom Devices\WebPage Addon\Windows\WebPage Addon Configuration.llb\ActionVIOnCompile.vi</Path>
+		</ActionVIOnCompile>
+	</Page>
+    
+  </Pages>
+  <CustomXML>
+    <Dummy></Dummy>
+  </CustomXML>
+</CustomDevice>

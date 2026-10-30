@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package crio_dashboard;
+
+// Service for controlling the CompactRIO Dashboard server.
+service DashboardControl {
+  // Shuts down both the HTTP dashboard server and this gRPC server.
+  // Returns an error status code on failure; OK (0) on success.
+  rpc Shutdown (ShutdownRequest) returns (ShutdownResponse);
+}
+
+// Empty — no data required to request a shutdown.
+message ShutdownRequest {}
+
+// Response indicating whether the shutdown was accepted.
+message ShutdownResponse {
+  // 0 = OK, non-zero = error.
+  int32  error_code    = 1;
+
+  // Human-readable description when error_code != 0.
+  string error_message = 2;
+}

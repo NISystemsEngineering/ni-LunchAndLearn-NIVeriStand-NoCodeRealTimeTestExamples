@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SourceFile Checksum="0C992AC139E9EB0D4935AD717FA1C4B6D780FC2F46D762A32C12EB9E2EAE23783CB9055596EE15818448DE18BBD28CE0215FBC12E23D01AD31261DCB0ABF86CD" Timestamp="1D6B6CAD2B96C7C" xmlns="http://www.ni.com/PlatformFramework">
+	<SourceModelFeatureSet>
+		<ParsableNamespace AssemblyFileVersion="8.4.0.49331" FeatureSetName="Configuration Based Software Core" Name="http://www.ni.com/ConfigurationBasedSoftware.Core" OldestCompatibleVersion="6.3.0.49152" Version="6.3.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="8.4.0.49331" FeatureSetName="Editor" Name="http://www.ni.com/PlatformFramework" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="8.4.0.49331" FeatureSetName="VeriStand Core Components" Name="http://www.ni.com/VeriStand" OldestCompatibleVersion="8.2.0.49152" Version="8.2.0.49152" />
+		<ApplicationVersionInfo Build="8.4.0.2339" Name="VeriStand" Version="8.4.0.49331" />
+	</SourceModelFeatureSet>
+	<Screen Id="2" xmlns="http://www.ni.com/VeriStand">
+		<ScreenSurface Height="[float]1600" Id="1" Left="[float]0" PanelSizeMode="Fixed" Top="[float]0" Width="[float]2000" xmlns="http://www.ni.com/ConfigurationBasedSoftware.Core" />
+	</Screen>
+</SourceFile>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SourceFile Checksum="785344EE4AA8C3109EA2D9BFD6EE3128230C82617CE5F64E61565D2462E05243E937019479F1075AB8B45849D4E68F4DFE700E9F1A2E3EDA339E46B9E60D8650" xmlns="http://www.ni.com/PlatformFramework">
+	<SourceModelFeatureSet>
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PlatformFramework" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
+		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="VeriStand Core Components" Name="http://www.ni.com/VeriStand" OldestCompatibleVersion="9.0.0.49152" Version="9.0.0.49152" />
+		<ApplicationVersionInfo Build="13.5.0.49855" Name="VeriStand" Version="9.21.0.49855" />
+	</SourceModelFeatureSet>
+	<Project p2:ProjectVersion="1.0.0.0" xmlns:p2="http://www.ni.com/VeriStand" xmlns="http://www.ni.com/PlatformFramework">
+		<EnvoyManagerRootEnvoy Id="1" ModelDefinitionType="EnvoyManagerRootEnvoy" Name="RootEnvoy" />
+		<EmbeddedDefinitionReference Id="2" ModelDefinitionType="NationalInstruments.ProjectExplorer.Modeling.ProjectDataManager" Name="ProjectExplorer">
+			<ProjectExplorer />
+		</EmbeddedDefinitionReference>
+		<NameScopingEnvoy Id="4" ModelDefinitionType="DefaultTarget" Name="DefaultTarget">
+			<DefaultTarget />
+			<EmbeddedDefinitionReference Id="5" ModelDefinitionType="GatewayDefinition" Name="Gateway" Reparentable="False">
+				<p2:GatewayDefinition />
+			</EmbeddedDefinitionReference>
+			<FileReference Bindings=".nivscf" Id="7a84ec5ad7c9410fbe474a751ed26b57" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="Integrated Test System.nivscf" StoragePath="Integrated Test System.nivscf" />
+			<FileReference Bindings=".nivsscreen" Id="23d9f9e844f944d4bf586633083aef4f" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="Integrated Test System.nivsscreen" StoragePath="Integrated Test System.nivsscreen" />
+			<FileReference Bindings=".nivsproj" Id="29ac0e5a5174cba9852bbfb86dee38c" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="Integrated Test System.nivsproj" StoragePath="Integrated Test System.nivsproj" />
+			<SourceFileReference Bindings="EnvoyManager" Id="5be73ab2ecef4205b6d1b374ccd53650" ModelDefinitionType="{http://www.ni.com/VeriStand}SystemDefinition" Name="Integrated Test System.nivssdf" StoragePath="Integrated Test System.nivssdf" />
+			<EmbeddedDefinitionReference Id="5616f78a08e740a4956bb83c7639d909" ModelDefinitionType="SdfFilePath" Name="SdfPath" Reparentable="False">
+				<p2:SdfFilePath SdfPath="Integrated Test System.nivssdf" />
+			</EmbeddedDefinitionReference>
+			<SourceFileReference Id="e93012dea1ad4b41aeebebc84467a98f" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="Control.nivsscr" StoragePath="Control.nivsscr" />
+			<SourceFileReference Id="d6531dab5a154a31a7f5778365f5997a" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="DUT Testing.nivsscr" StoragePath="DUT Testing.nivsscr" />
+			<SourceFileReference Id="b5662a4d4e14580acfaa7202d168790" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="InternalVariables.nivsscr" StoragePath="InternalVariables.nivsscr" />
+			<SourceFileReference Id="91f5a054504e422ea9100dbb0576426f" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="Monitoring.nivsscr" StoragePath="Monitoring.nivsscr" />
+			<FileReference Bindings=".vi" Id="9dd4b20d79d42cd9e8bc2e4378b82a2" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="Power Supply.vi" StoragePath="Simulation\Power Supply.vi" />
+			<FileReference Bindings=".exe" Id="6802f288c6be4e189496a8ffb4b4462d" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="PID Tool.exe" StoragePath="..\..\..\..\Public\Documents\National Instruments\NI VeriStand 2026\Workspace Tools\PID Tool\PID Tool.exe" />
+		</NameScopingEnvoy>
+	</Project>
+	<ProjectInformation xmlns="http://www.ni.com/PlatformFramework" />
+</SourceFile>
