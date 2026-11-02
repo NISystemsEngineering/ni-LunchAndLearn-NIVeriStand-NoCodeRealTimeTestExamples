@@ -255,25 +255,7 @@
 				</Properties>
 				<Errors />
 			</Section>
-			<Section Name="Control Addon Engine Linux64.llb" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="d980ced9-3caf-4b38-9054-c3097c57f10e">
-				<Description />
-				<Properties>
-					<Property Name="Path">
-						<String>C:\Users\Public\Documents\National Instruments\NI VeriStand 2026\Custom Devices\Control Addon\Linux_x64\Control Addon Engine Linux64.llb</String>
-					</Property>
-				</Properties>
-				<Errors />
-			</Section>
-			<Section Name="Instrument Addon Engine Linux64.llb" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="17766447-3a67-4f9b-928e-24c005747317">
-				<Description />
-				<Properties>
-					<Property Name="Path">
-						<String>C:\Users\Public\Documents\National Instruments\NI VeriStand 2026\Custom Devices\Instrument Addon\Linux_x64\Instrument Addon Engine Linux64.llb</String>
-					</Property>
-				</Properties>
-				<Errors />
-			</Section>
-			<Section Name="ChamberModel.lvmodelso (1)" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="a57c430c-410d-47d5-b903-9c7f876f1c71">
+			<Section Name="ChamberModel.lvmodelso" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="a727062f-00a2-4836-96ff-8e3518cbeed2">
 				<Description />
 				<Properties>
 					<Property Name="Path">
@@ -282,11 +264,29 @@
 				</Properties>
 				<Errors />
 			</Section>
-			<Section Name="DUTModel.lvmodelso (1)" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="c6cb5bc8-1257-4dbe-bf67-a8c948ee4ac9">
+			<Section Name="DUTModel.lvmodelso" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="845af67d-439d-4de1-a4b7-e01b38197b3f">
 				<Description />
 				<Properties>
 					<Property Name="Path">
 						<String>C:\Users\deaton\Documents\VeriStand Projects\Integrated Test System\Simulation\DUTModel.lvmodelso</String>
+					</Property>
+				</Properties>
+				<Errors />
+			</Section>
+			<Section Name="Control Addon Engine Linux64.llb" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="70197782-c915-490e-a631-7ef18bd5aa8a">
+				<Description />
+				<Properties>
+					<Property Name="Path">
+						<String>C:\Users\Public\Documents\National Instruments\NI VeriStand 2026\Custom Devices\Control Addon\Linux_x64\Control Addon Engine Linux64.llb</String>
+					</Property>
+				</Properties>
+				<Errors />
+			</Section>
+			<Section Name="Instrument Addon Engine Linux64.llb" TypeGUID="369b9797-43bd-4cdf-8352-81032feed666" Identifier="872fb10d-48f7-49f5-aab7-db604d2c555c">
+				<Description />
+				<Properties>
+					<Property Name="Path">
+						<String>C:\Users\Public\Documents\National Instruments\NI VeriStand 2026\Custom Devices\Instrument Addon\Linux_x64\Instrument Addon Engine Linux64.llb</String>
 					</Property>
 				</Properties>
 				<Errors />

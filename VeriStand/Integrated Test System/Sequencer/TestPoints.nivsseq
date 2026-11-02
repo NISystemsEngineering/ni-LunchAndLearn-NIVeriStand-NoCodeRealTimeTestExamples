@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <RealTimeSequence xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<FileFormatVersion Major="2012" Minor="0" Fix="0" Build="0" />
-	<Version Major="1" Minor="0" Fix="0" Build="24" />
+	<Version Major="1" Minor="0" Fix="0" Build="27" />
 	<References>
 		<Reference>
 			<Path>&lt;VeriStand&gt;:\nivs.lib\Sequence Library\Standard\Timing\WaitUntilSettled.nivsseq</Path>
@@ -142,8 +142,14 @@
 	<Code>
 		<Setup>
 			<Body>
+				<Statement xsi:type="Comment">
+					<Text>Initialize Local Variables</Text>
+				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Continue = true</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Force Initial Conditions</Text>
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Manual_Control = 1</ExpressionString>
@@ -157,11 +163,17 @@
 				<Statement xsi:type="Expression">
 					<ExpressionString>Wait(5)</ExpressionString>
 				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Start Logging</Text>
+				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Log_Trigger = 1</ExpressionString>
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Wait(5)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Turn on DUT Power Supply</Text>
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>PowerSupply_EnablePeriodic = 1</ExpressionString>
@@ -175,6 +187,9 @@
 				<Statement xsi:type="Expression">
 					<ExpressionString>Wait(10)</ExpressionString>
 				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Enable PID Control</Text>
+				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Manual_Control = 0</ExpressionString>
 				</Statement>
@@ -185,9 +200,15 @@
 		</Setup>
 		<Main>
 			<Body>
+				<Statement xsi:type="Comment">
+					<Text>Control both DUT and Chamber</Text>
+				</Statement>
 				<Statement xsi:type="Multitask">
 					<Task>
 						<Body>
+							<Statement xsi:type="Comment">
+								<Text>Control to First Setpoint and Wait for Temp Stabilization</Text>
+							</Statement>
 							<Statement xsi:type="Expression">
 								<ExpressionString>Chamber_TempSetpoint = FirstSetpoint</ExpressionString>
 							</Statement>
@@ -202,6 +223,9 @@
 							</Statement>
 							<Statement xsi:type="Expression">
 								<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 15, 120)</ExpressionString>
+							</Statement>
+							<Statement xsi:type="Comment">
+								<Text>Control to Second Setpoint and Wait for Temp Stabilization</Text>
 							</Statement>
 							<Statement xsi:type="Expression">
 								<ExpressionString>Chamber_TempSetpoint = SecondSetpoint</ExpressionString>
@@ -218,14 +242,20 @@
 							<Statement xsi:type="Expression">
 								<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 15, 120)</ExpressionString>
 							</Statement>
+							<Statement xsi:type="Comment">
+								<Text>Stop DUT Control</Text>
+							</Statement>
 							<Statement xsi:type="Expression">
 								<ExpressionString>Continue = false</ExpressionString>
 							</Statement>
 						</Body>
-						<TaskName>TempProfile</TaskName>
+						<TaskName>ChamberProfile</TaskName>
 					</Task>
 					<Task>
 						<Body>
+							<Statement xsi:type="Comment">
+								<Text>Continuous Exercise DUT pins</Text>
+							</Statement>
 							<Statement xsi:type="WhileLoop">
 								<AutoYield>true</AutoYield>
 								<Body>
@@ -254,6 +284,9 @@
 		</Main>
 		<CleanUp>
 			<Body>
+				<Statement xsi:type="Comment">
+					<Text>Reset System to Safe State</Text>
+				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>DUT_DigitalInput = 0</ExpressionString>
 				</Statement>
@@ -266,6 +299,9 @@
 				<Statement xsi:type="Expression">
 					<ExpressionString>LowerLimit= Chamber_TempSetpoint - 2</ExpressionString>
 				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Turn Off DUT Power Supply</Text>
+				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>PowerSupply_VoltageCmd = 0</ExpressionString>
 				</Statement>
@@ -274,6 +310,9 @@
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>WaitUntilSettled(DUT_Temp0, UpperLimit, LowerLimit, 5, 120)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Turn Off Chamber Control</Text>
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Manual_Control = 1</ExpressionString>
@@ -286,6 +325,9 @@
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Wait(10)</ExpressionString>
+				</Statement>
+				<Statement xsi:type="Comment">
+					<Text>Stop Logging</Text>
 				</Statement>
 				<Statement xsi:type="Expression">
 					<ExpressionString>Log_Trigger = 0</ExpressionString>

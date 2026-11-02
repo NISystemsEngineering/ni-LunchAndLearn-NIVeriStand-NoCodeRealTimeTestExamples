@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<SourceFile Checksum="053C09339BCB6DF1D2CF74CD9BA25682AF6360824CEEA01C65047B901C7BB98B913C33BA499C12C8B133801118B9214294F754467242813BB4129A34A706BFBF" xmlns="http://www.ni.com/PlatformFramework">
+<SourceFile Checksum="819F61F583D4BE90996B29CCB86C4CEE98F9C1A46ED0C648EC5C8250EF4969D350D9A692FDEE7529158EBDB77B9EB238091B25E736F35F59F6D02D4D6AF8F616" xmlns="http://www.ni.com/PlatformFramework">
 	<SourceModelFeatureSet>
 		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="Editor" Name="http://www.ni.com/PlatformFramework" OldestCompatibleVersion="8.1.0.49152" Version="8.1.0.49152" />
 		<ParsableNamespace AssemblyFileVersion="9.21.0.49855" FeatureSetName="VeriStand Core Components" Name="http://www.ni.com/VeriStand" OldestCompatibleVersion="9.0.0.49152" Version="9.0.0.49152" />
@@ -29,7 +29,7 @@
 			<FileReference Bindings=".vi" Id="9dd4b20d79d42cd9e8bc2e4378b82a2" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="Power Supply.vi" StoragePath="Simulation\Power Supply.vi" />
 			<FileReference Bindings=".exe" Id="6802f288c6be4e189496a8ffb4b4462d" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="PID Tool.exe" StoragePath="..\..\..\..\Public\Documents\National Instruments\NI VeriStand 2026\Workspace Tools\PID Tool\PID Tool.exe" />
 			<FileReference Bindings=".nivsseq" Id="6daff6b264924fc49ede653cdcffb6fd" ModelDefinitionType="{http://www.ni.com/PlatformFramework}ExternalFile" Name="TestPoints.nivsseq" StoragePath="Sequencer\TestPoints.nivsseq" />
-			<SourceFileReference Id="318778f9beca47a2957f485b56e82b12" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="Untitled.nivsscr" StoragePath="Untitled.nivsscr" />
+			<SourceFileReference Id="6703321e86d34188a00512607c12b194" ModelDefinitionType="{http://www.ni.com/VeriStand}Screen" Name="Setup.nivsscr" StoragePath="Setup.nivsscr" />
 		</NameScopingEnvoy>
 	</Project>
 	<ProjectInformation xmlns="http://www.ni.com/PlatformFramework" />

@@ -1,0 +1,25 @@
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp0	DUT/InstrumentedSensors/DUT.Temp0
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp1	DUT/InstrumentedSensors/DUT.Temp1
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp2	DUT/InstrumentedSensors/DUT.Temp2
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp3	DUT/InstrumentedSensors/DUT.Temp3
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp4	DUT/InstrumentedSensors/DUT.Temp4
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp5	DUT/InstrumentedSensors/DUT.Temp5
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp6	DUT/InstrumentedSensors/DUT.Temp6
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Temps/Temp7	DUT/InstrumentedSensors/DUT.Temp7
+Targets/Controller/Custom Devices/PowerSupply/Measure/MeasureVoltage/Response/MeasuredVoltage	DUT/InstrumentedSensors/DUT.InputVoltage
+Targets/Controller/Simulation Models/Models/DUTModel/Inports/Digital Input	DUT/Inputs/DUT.DigitalInput
+Targets/Controller/Simulation Models/Models/DUTModel/Outports/Digital Output	DUT/Outputs/DUT.DigitalOutput
+Targets/Controller/Simulation Models/Models/ChamberModel/Outports/Temperature Feedback	Chamber/Chamber.Temperature
+Targets/Controller/Simulation Models/Models/ChamberModel/Outports/Shock Feedback	Chamber/Chamber.Shock
+Targets/Controller/Simulation Models/Models/ChamberModel/Inports/Enable Temperature Control	Chamber/Chamber.EnableTempControl
+Targets/Controller/Simulation Models/Models/ChamberModel/Inports/Shock Setpoint	Chamber/Chamber.ShockSetpoint
+Targets/Controller/Custom Devices/Control Addon/TemperatureControl/Channels/Setpoint	Chamber/Chamber.TempSetpoint
+Targets/Controller/Custom Devices/Embedded Data Logger/SlowSpeed/Status/File Status	Logging/Log.SlowSpeedStatus
+Targets/Controller/User Channels/LogTrigger	Logging/Log.Trigger
+Targets/Controller/System Channels/Absolute Time	InternalVariables/AbsoluteTime
+Targets/Controller/System Channels/HP Count	InternalVariables/HPCount
+Targets/Controller/Custom Devices/PowerSupply/Measure/MeasureCurrent/Response/MeasuredCurrent	PowerSupply/PowerSupply.MeasuredCurrent
+Targets/Controller/Custom Devices/PowerSupply/Measure/MeasureVoltage/Response/MeasuredVoltage	PowerSupply/PowerSupply.MeasuredVoltage
+Targets/Controller/Custom Devices/PowerSupply/Control/EnableOutput/Command/Output	PowerSupply/PowerSupply.EnableOutput
+Targets/Controller/Custom Devices/PowerSupply/Control/SetVoltage/Command/SupplyVoltage	PowerSupply/PowerSupply.VoltageCmd
+Targets/Controller/User Channels/EnablePeriodic	PowerSupply/PowerSupply.EnablePeriodic
