@@ -10,7 +10,7 @@
 				<String>Integrated Test System</String>
 			</Property>
 			<Property Name="Version">
-				<String>1.0.0.216</String>
+				<String>1.0.0.223</String>
 			</Property>
 			<Property Name="Creator">
 				<String />
@@ -2161,7 +2161,7 @@ Increase the FIFO Depth value for the Embedded Data Logger to avoid data loss.</
 								<U32>1</U32>
 							</Property>
 							<Property Name="user.CD.TCP.IP">
-								<String>192.168.68.61</String>
+								<String>192.168.68.55</String>
 							</Property>
 							<Property Name="user.CD.TCP.Port">
 								<U32>51324</U32>
@@ -3965,13 +3965,19 @@ Increase the FIFO Depth value for the Embedded Data Logger to avoid data loss.</
 								<Double>0</Double>
 							</Property>
 							<Property Name="Auto Reset Alarm">
-								<Boolean>true</Boolean>
+								<Boolean>false</Boolean>
 							</Property>
 							<Property Name="Require Alarm Acknowledgement">
-								<Boolean>true</Boolean>
+								<Boolean>false</Boolean>
 							</Property>
 							<Property Name="Group Number">
 								<U32>0</U32>
+							</Property>
+							<Property Name="Procedure Path">
+								<DependentNode Path="Targets/Controller/Procedures/SafeShutdown" />
+							</Property>
+							<Property Name="Trip Message">
+								<String>High Temperature Alam on Temp0</String>
 							</Property>
 						</Properties>
 						<Errors />
@@ -4051,10 +4057,10 @@ Indicate: 4</Description>
 									</DoubleArray>
 								</Property>
 								<Property Name="Variable 0">
-									<DependentNode Path="Aliases/PowerSupply/PowerSupply.MeasuredCurrent" />
+									<DependentNode Path="Aliases/PowerSupply/PowerSupply.VoltageCmd" />
 								</Property>
 								<Property Name="Variable 1">
-									<DependentNode Path="Aliases/PowerSupply/PowerSupply.MeasuredVoltage" />
+									<DependentNode Path="Aliases/PowerSupply/PowerSupply.EnableOutput" />
 								</Property>
 								<Property Name="Variable 2">
 									<DependentNode Path="Targets/Controller/Custom Devices/Control Addon/TemperatureControl/Channels/Manual Control" />
@@ -4064,6 +4070,39 @@ Indicate: 4</Description>
 								</Property>
 								<Property Name="Variable 4">
 									<DependentNode Path="Targets/Controller/Custom Devices/Control Addon/TemperatureControl/Channels/Setpoint" />
+								</Property>
+							</Properties>
+							<Errors />
+						</Section>
+						<Section Name="Reset Alarm and Exit" TypeGUID="e203af68-4b16-4bae-a211-7502c28a5642" Identifier="4a9e1adc-5618-4dff-8899-b4c6e89718b2">
+							<Description />
+							<Properties>
+								<Property Name="Command.Priority">
+									<U32>0</U32>
+								</Property>
+								<Property Name="Command.Default State">
+									<I32>0</I32>
+								</Property>
+								<Property Name="Command.Delay">
+									<Double>0</Double>
+								</Property>
+								<Property Name="Command.Upper Limit">
+									<Double>1</Double>
+								</Property>
+								<Property Name="Command.Lower Limit">
+									<Double>0</Double>
+								</Property>
+								<Property Name="Command.Function">
+									<I32>4</I32>
+								</Property>
+								<Property Name="Command.UL Const">
+									<Boolean>true</Boolean>
+								</Property>
+								<Property Name="Command.LL Const">
+									<Boolean>true</Boolean>
+								</Property>
+								<Property Name="Command.Trip Alarm">
+									<Boolean>true</Boolean>
 								</Property>
 							</Properties>
 							<Errors />
